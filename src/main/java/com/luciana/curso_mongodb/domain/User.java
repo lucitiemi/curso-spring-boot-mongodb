@@ -3,11 +3,16 @@ package com.luciana.curso_mongodb.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "user") 		// nao precisaria do valor em parenteses, pois, por padrao, a colecao já eh criada com o nome da classe em minusculo. Só é necessario quando se deseja criar um nome diferente para a colecao
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	
 	// atributos
+	@Id
 	private String id;
 	private String name;
 	private String email;
