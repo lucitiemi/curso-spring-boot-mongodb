@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import com.luciana.curso_mongodb.domain.Post;
 import com.luciana.curso_mongodb.domain.User;
 import com.luciana.curso_mongodb.dto.AuthorDTO;
+import com.luciana.curso_mongodb.dto.CommentDTO;
 import com.luciana.curso_mongodb.repositories.PostRepository;
 import com.luciana.curso_mongodb.repositories.UserRepository;
 
@@ -54,6 +55,16 @@ public class Instantiation implements CommandLineRunner {
 		// referenciando os post nos usuarios
 		maria.getPosts().addAll(Arrays.asList(post1, post2));
 		userRepository.save(maria);
+		
+		
+		// instanciando os comentarios
+		CommentDTO c1 = new CommentDTO("Boa viagem mano!", sdf.parse("21/03/2024"), new AuthorDTO(alex));
+		CommentDTO c2 = new CommentDTO("Aproveite", sdf.parse("22/03/2024"), new AuthorDTO(bob));
+		CommentDTO c3 = new CommentDTO("Tenha um otimo dia!", sdf.parse("23/03/2024"), new AuthorDTO(alex));
+		post1.getComments().addAll(Arrays.asList(c1, c2));
+		post2.getComments().add(c3);
+		postRepository.saveAll(Arrays.asList(post1, post2));
+		
 	}
 
 }
