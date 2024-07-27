@@ -1,9 +1,12 @@
 package com.luciana.curso_mongodb.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "user") 		// nao precisaria do valor em parenteses, pois, por padrao, a colecao já eh criada com o nome da classe em minusculo. Só é necessario quando se deseja criar um nome diferente para a colecao
@@ -16,6 +19,10 @@ public class User implements Serializable {
 	private String id;
 	private String name;
 	private String email;
+	
+	// associacoes
+	@DBRef(lazy = true)
+	private List<Post> posts = new ArrayList<>();
 	
 	
 	
@@ -30,6 +37,8 @@ public class User implements Serializable {
 	}
 
 	
+	
+
 	// getters e setters
 	public String getId() {
 		return id;
@@ -53,6 +62,14 @@ public class User implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
 
 	
