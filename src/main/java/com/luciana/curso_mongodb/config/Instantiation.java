@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.luciana.curso_mongodb.domain.Post;
 import com.luciana.curso_mongodb.domain.User;
+import com.luciana.curso_mongodb.dto.AuthorDTO;
 import com.luciana.curso_mongodb.repositories.PostRepository;
 import com.luciana.curso_mongodb.repositories.UserRepository;
 
@@ -45,8 +46,8 @@ public class Instantiation implements CommandLineRunner {
 		
 		
 		// instanciando os posts e salvando no bd
-		Post post1 = new Post(null, sdf.parse("21/03/2024"), "Partiu viagem!", "Vou viajar para São Paulo. Abraços!", maria);
-		Post post2 = new Post(null, sdf.parse("23/03/2024"), "Bom dia", "Acordei feliz hoje!", maria);
+		Post post1 = new Post(null, sdf.parse("21/03/2024"), "Partiu viagem!", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(maria));
+		Post post2 = new Post(null, sdf.parse("23/03/2024"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria));
 		postRepository.saveAll(Arrays.asList(post1, post2));
 		
 	}
