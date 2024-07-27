@@ -37,12 +37,20 @@ public class UserService {
 	}
 
 	
+	// deleta um User
+	public void delete(String id) {
+		findById(id);					// aqui ja trata a excecao caso nao exista o id
+		repository.deleteById(id);
+	}
+	
+	
 	// transforma um DTO em um User
 	public User fromDTO(UserDTO objDto) {
 		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
 	}
 
 
+	
 
 
 }
